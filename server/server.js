@@ -8,6 +8,7 @@ var {User} = require('./models/user');
 
 
 var app = express();
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
@@ -31,14 +32,6 @@ app.get('/todos', (req, res) => {
 	});
 })
 
-
-
-app.listen(3000, () => {
-	console.log('Listening on Port 3000');
-});
-
-// GET /todos/id
-
 app.get('/todos/:id', (req, res) => {
 	var id = req.params.id;
 	if (!ObjectID.isValid(id)) {
@@ -60,5 +53,13 @@ app.get('/todos/:id', (req, res) => {
 	}
 
 });
+
+app.listen(PORT, () => {
+	console.log(`Listening on Port ${port}`);
+});
+
+// GET /todos/id
+
+
 
 module.exports = {app};
